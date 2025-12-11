@@ -13,6 +13,7 @@ document.querySelector('#app').innerHTML = `
     </a>
     <h1>Hello Simply Vite!</h1>
     <div class="card">
+      <p>Counter should increment by 2</p>
       <button id="counter" type="button"></button>
     </div>
     <p class="read-the-docs">
