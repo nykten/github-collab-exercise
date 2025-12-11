@@ -76,3 +76,19 @@ So the only difference in the workflows would be the automation of creating a br
 
 Not much of an issue or confusion, just that I like the workflow on GitLab better.
 
+## Resolving Pull Requests
+
+Here's what I did:
+
+1. Created a branch `change-1` on Github (remote).
+2. Pulled the new branch to local.
+3. Commit some changes.
+4. Push to branch `change-1`.
+5. View the branch page which has the `Compare & pull request` prompt at the top
+6. Made a pull request by clicking on the prompt.
+7. Fill in the description with what had changed, mentioning which issue related to it by typing '#', a prompt will appear where you can select which issue (in this case number 1).
+8. Github did some checkings, *'Safe to merge'*.
+9. Merged the pull request to branch `main`.
+10. Closed the issue #1.
+
+Obviously this is a one-man job so no actual reviews happened, but it would have been taken place between step 7~8.
