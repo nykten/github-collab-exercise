@@ -35,3 +35,44 @@ As I progress through doing stuffs in this repo, I will update this README on th
 I'm planning to use **Vite** with vanilla JS as my basic tech stack. A frontend web dev should be enough.
 
 Why Vite? I simply want to test the CI/CD and testing workflows on something with node.js. Could've used something else like Java or C\# which I'm more familiar with but I want to keep it as simple as possible... hopefully..
+
+## Test #1 - Opening an issue
+
+Opened an issue [here](https://github.com/nykten/github-collab-exercise/issues/1) with tagging and assigning myself as the assignee. Simple enough. Maybe lack direction but that's how it's simply done.
+
+You apparently can't tie an issue with a branch (or create one) within the issue page unlike GitLab.
+
+Based on observation on other repos including OSS repos, most people describe their 'issues' with any improvements/bugs/feature request that could be added to the repo, then just create a branch themselves. Then, they would push their commits to the remote repo while opening a pull request. This way, they can also 'link' or more precisely *'add reference'* of the issue to the pull request.
+
+Example seen in: [This pull request](https://github.com/firebase/functions-samples/pull/1214).
+They mentioned the issue in the pull request as *"Fixes #[issue-number]"*
+
+### Workflow differences (GitLab vs Github)
+
+#### GitLab:
+
+1. Open an issue.
+2. Can select the option to automatically create a new branch with the issue name.
+3. Make changes and commit to the branch created.
+4. Push to remote repo.
+5. Make a merge request (PR).
+6. Solve merge conflicts if any,
+7. Merge request clears CI/CD pipeline & approvals.
+8. Merge to main/master.
+
+#### Github:
+
+1. Open an issue describing the issue/new feature.
+2. Make a new branch manually (locally/remotely).
+3. Make changes, commit & push to the branch.
+4. Make a pull request.
+5. Solve merge conflicts if any.
+6. Pull request clears CI/CD pipeline & approvals.
+7. Merge to main/master.
+
+### Takeaway
+
+So the only difference in the workflows would be the automation of creating a branch upon an issue creation in GitLab while Github doesn't have that. Although I think it might be possible with some integrations.
+
+Not much of an issue or confusion, just that I like the workflow on GitLab better.
+
