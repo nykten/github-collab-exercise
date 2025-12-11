@@ -76,7 +76,7 @@ So the only difference in the workflows would be the automation of creating a br
 
 Not much of an issue or confusion, just that I like the workflow on GitLab better.
 
-## Resolving Pull Requests
+## Test 2: Resolving Pull Requests
 
 Here's what I did:
 
@@ -92,3 +92,86 @@ Here's what I did:
 10. Closed the issue #1.
 
 Obviously this is a one-man job so no actual reviews happened, but it would have been taken place between step 7~8.
+
+## Test 3: Starting from local branch
+
+Command to create new branch locally & go into it:
+> `git branch <branchName>`
+> `git switch <branchName>`
+
+Make changes & commit like usual
+
+To push to remote from local (making it available in Github):
+> `git push --set-upstream origin <branchName>`
+
+## Test 4: Resolving Merge conflicts
+
+I deliberately made a change in the `main` branch so that it will affect the same file in `change-2`, producing a conflict I later need to resolve.
+
+How do you resolve it?
+
+### Resolve using Github
+
+In the pull request, there will be an option for us to explore the conflict and resolve it using their **web editor**.
+
+![githubPRConflictToResolve](/media/github-pr-conflict-to-resolve.png)
+
+When we click it, it will open up this:
+
+![github resolve web editor](/media/github-resolve-web-editor.png)
+
+From here we can accept/reject the changes we want, or just edit the file to produce the desired output. More information on how this works here: [Official Github Docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
+
+### Resolve using command line
+
+I did it in my terminal in VSCode.
+
+Github does outline the basic command on how below:
+![Github merge command lines guide](/media/github-merge-commandlines.png)
+
+But they don't tell you how to actually resolve it in that same card. It will redirect you to [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line) (which is the previous link above).
+
+When doing merge through command line/terminal, VSCode will open the conflicted file and it will have the same format as the web editor, where we will then need to accept/reject the changes we want.
+
+![Git merge local](media/git-merge-local.png)
+
+And since for this conflict, the change we want to make is from the *Current change* in our current branch `change-2`, we accept that over the *Incoming change* from the `main` branch. The result would be:
+
+![Git Merge conflict resolved](media/git-merge-resolved-1.png)
+
+### Resolve in VSCode with 'Merge Editor'
+
+Alternatively, VSCode offers a way to resolve merge conflicts by opening up comparison 'windows' between the two branches and a result 'window'. 
+
+When we first enter this view, the result window will show the *'base'* result which is the state of the file *before* changes from **INCOMING** and **CURRENT**.
+
+![Git Merge Editor](media/git-merge-editor.png)
+
+Again in this situation, we want to accept the *Current changes* so we go ahead and click *'Accept Current'* in the top-right window. The final result will be outputted on the bottom window, showing that the counter will be **incremented by 2 (+2)** instead of 3 (the conflict we want to get rid of).
+
+![Git Merge Editor - resolved](/media/git-merge-resolved-2.png)
+
+When we're happy with the result, we finish up by clicking 'Complete Merge' at the bottom left.
+
+### Committing & concluding the merge conflict resolution
+
+In order for the merge conflict to be fully 'resolved', we need to commit our changes. Simply commit with a helpful message and push it to the current branch, no need to `git add` anything.
+
+> `git commit -m "Resolve merge conflict for this branch"`
+> `git push origin change-2`
+
+![Git push the resolved](media/git-merge-push-resolved.png)
+
+Now we can go back to our pull request to finally merge into main. But instead of merging normally into main, I made a new scenario where squash my commits + merge it into main.
+
+### Recap on how to resolve merge conflicts:
+
+Assuming you have your workflow in VSCode. The web editor on Github is doable too if the conflict is not too complex.
+
+1. Pull from main (git pull)
+2. Switch to the `otherBranch` (git switch)
+3. Run: `git merge main` (Merging the conflicting stuffs from main into the `otherBranch`)
+4. Resolve merge conflicts by accepting the desired change.
+5. Commit the change (`git commit -m "resolve..."`)
+6. Push to remote (make sure you're in the `otherBranch`)
+7. Now we can proceed with merging into main via PR ✅
